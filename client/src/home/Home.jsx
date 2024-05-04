@@ -3,10 +3,9 @@ import React from 'react'
 const Home = () => {
   return (
     <div className=''>
-      <div>
-        <div>
-          Landing Page
-        </div>
+      <div className='h-screen'>
+        Landing Page
+        <div className='h-screen bg-red-600'></div>
       </div>
     </div>
   )
