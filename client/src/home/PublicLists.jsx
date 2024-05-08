@@ -2,17 +2,17 @@ import React, { useEffect } from 'react'
 import ListCards from '../components/ListCards';
 
 const PublicLists = () => {
-    const [cars, setCars] = React.useState([]);
+    const [list, setLists] = React.useState([]);
 
     useEffect(() => {
-        fetch("http://localhost:3000/all-cars")
+        fetch("http://localhost:3000/all-lists")
         .then(response => response.json())
-        .then(data => setCars(data))
+        .then(data => setLists(data))
     }, [])
 
   return (
     <div>
-      <ListCards cars/>
+      <ListCards list/>
     </div>
   )
 }
