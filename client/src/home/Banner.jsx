@@ -9,15 +9,15 @@ const Banner = () => {
         {/* left side */}
         <div>
           <motion.h2 className='text-5xl font-bold leading-snug text-black'
-            whileHover={{ scale: 1.05, transition: { duration: 0.5 }, cursor: 'default'}}
-            whileTap={{ scale: 0.95 }}>
+            whilehover={{ scale: 1.05, transition: { duration: 0.5 }, cursor: 'default'}}
+            whiletap={{ scale: 0.95 }}>
             Welcome to our Diecast Car Management System!
           </motion.h2>
         </div>
 
         {/* right side */}
         {/* Set width to full on small screens and 3/4 on medium screens and above */}
-        <div className="w-full md:w-3/4" whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}> 
+        <div className="w-full md:w-3/4" whilehover={{ scale: 1.05 }} whiletap={{ scale: 0.95 }}> 
           <motion.p className="text-sm md:text-base text-justify"
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}

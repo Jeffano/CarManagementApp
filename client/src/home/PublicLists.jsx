@@ -1,11 +1,20 @@
-import React from 'react';
+import React, { useEffect } from 'react'
+import ListCards from '../components/ListCards';
 
-const SampleText = () => {
+const PublicLists = () => {
+    const [cars, setCars] = React.useState([]);
+
+    useEffect(() => {
+        fetch("http://localhost:3000/all-cars")
+        .then(response => response.json())
+        .then(data => setCars(data))
+    }, [])
+
   return (
     <div>
-      <h1>This is a sample text</h1>
+      <ListCards cars/>
     </div>
-  );
+  )
 }
 
-export default SampleText;
+export default PublicLists
