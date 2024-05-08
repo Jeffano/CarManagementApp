@@ -1,0 +1,18 @@
+/* button.css */
+
+.search-button {
+  @apply py-2 px-2 rounded-lg font-bold border hover:shadow-md transition duration-1000;
+
+  /* Effect 1 */
+  transition: transform 0.5s, border-radius 0.5s; /* Added border-radius transition */
+  background-color: blue;
+  color: white;
+
+  /* Effect 2 */
+  box-shadow: 0 4px 8px rgba(94, 203, 233, 0.2);
+}
+
+.search-button:hover {
+  transform: scale(1.1);
+  border-radius: 50px;
+}

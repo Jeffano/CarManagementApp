@@ -1,0 +1,6 @@
+/* input.css */
+
+.search-input {
+    @apply py-2 px-2 rounded-lg bg-gray-200 border border-gray-300 focus:outline-none focus:border-gray-500;
+  }
+  
