@@ -3,13 +3,13 @@ import { motion } from 'framer-motion';
 
 const Banner = () => {
   return (
-    <div className="px-4 lg:px-24 bg-teal-100 items-center">
+    <div className="px-4 lg:px-24 items-center" style={{ backgroundColor: 'rgb(236, 206, 142)' }}>
       <div className='flex flex-col md:flex-row justify-between items-center gap-12 py-40'>
 
         {/* left side */}
         <div>
           <motion.h2 className='text-5xl font-bold leading-snug text-black'
-            whileHover={{ scale: 1.05, transition: { duration: 0.5 }  }}
+            whileHover={{ scale: 1.05, transition: { duration: 0.5 }, cursor: 'default'}}
             whileTap={{ scale: 0.95 }}>
             Welcome to our Diecast Car Management System!
           </motion.h2>

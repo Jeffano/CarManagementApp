@@ -48,7 +48,7 @@ const Navbar = () => {
         <div className='flex justify-between items-center text-base gap-8'>
 
           {/* logo */}
-          <Link to='/' className='text-2xl font-bold text-blue-700 flex items-center gap-2'><FaCar className='inline-block' />Diecast Car Management System</Link>
+          <Link to='/' className='text-2xl font-bold text-blue-700 flex items-center gap-2'><FaCar className='inline-block' />CARS</Link>
 
           {/* nav items for large devices */}
           <ul className='md:flex space-x-12 hidden'>
