@@ -1,6 +1,46 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
+
 
 const SignIn = () => {
+
+    const handleSignIn = (e) => {
+        e.preventDefault();
+        const form = e.target;
+        const email = form.email.value;
+        const password = form.password.value;
+
+        // Regular expression for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        // Clear error message when user starts typing in the text box
+        const inputs = form.querySelectorAll('input');
+        inputs.forEach(input => {
+            input.addEventListener('input', () => {
+                form.querySelector('label[for=error]').textContent = '';
+            });
+        });
+
+        if (email === '' || password === '') {
+            form.querySelector('label[for=error]').textContent = 'Please fill in all fields';
+            return;
+        }
+
+        if (!emailRegex.test(email)) {
+            form.querySelector('label[for=error]').textContent = 'Invalid Email';
+            return;
+        }
+
+        
+
+        
+    }
+
+
+
+
+
+
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
@@ -9,10 +49,10 @@ const SignIn = () => {
                         <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
                             Sign In
                         </h1>
-                        <form className="space-y-4 md:space-y-6" action="#">
+                        <form onSubmit={handleSignIn} className="space-y-4 md:space-y-6" action="#">
                             <div>
                                 <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Email</label>
-                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="name@company.com" required="" />
+                                <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="example@email.com" required="" />
                             </div>
                             <div>
                                 <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
@@ -20,7 +60,7 @@ const SignIn = () => {
                             </div>
                             <div className="flex items-start">
                                 <div className="ml-3 text-sm">
-                                    <label htmlFor="error" className="font-light" style={{ color: 'red' }}>ERROR</label>
+                                    <label htmlFor="error" className="font-bold" style={{ color: 'rgb(182, 36, 79)' }}></label>
                                 </div>
                             </div>
                             <button
@@ -37,7 +77,7 @@ const SignIn = () => {
                             </button>
 
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                Don't have an account? <a href="#" className="font-medium" style={{ color: 'rgb(233, 211, 208)' }}>Sign Up</a>
+                                Don't have an account? <Link to="/sign-up" className="font-medium" style={{ color: 'rgb(233, 211, 208)' }}> Sign Up </Link>
                             </p>
                         </form>
                     </div>
