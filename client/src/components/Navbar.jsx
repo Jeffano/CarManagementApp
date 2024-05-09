@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 
 // react icons
 import { FaCar } from "react-icons/fa";
@@ -41,22 +42,29 @@ const Navbar = () => {
     { link: 'Collection', path: '/collection' },
     { link: 'List', path: '/list' },
     { link: 'Account', path: '/account' },
-    { link: 'Log Out'}
+    { link: 'Log Out' },
+    { link: 'Sign Up', path: '/sign-up'},
+    { link: 'Log In', path: '/sign-in'}
   ]
   return (
     <header className='w-full bg-transparent fixed top-0 left-0 right-0 transtion-all ease-in duration-300'>
-      <nav className={`py-4 lg:px-24 px-4 ${isSticky ? "sticky top-0 left-0 right-0 bg-blue-300": ""}`}>
+      <nav className={`py-4 lg:px-24 px-4 ${isSticky ? "sticky top-0 left-0 right-0 dark:bg-gray-800" : ""}`}>
         <div className='flex justify-between items-center text-base gap-8'>
 
           {/* logo */}
-          <Link to='/' className='text-2xl font-bold text-blue-700 flex items-center gap-2'><FaCar className='inline-block' />CARS</Link>
+          <Link to='/' className='text-2xl font-bold flex items-center gap-2' style={{ color: 'rgb(233, 211, 208)' }}><FaCar className='inline-block' />CARS</Link>
 
           {/* nav items for large devices */}
           <ul className='md:flex space-x-12 hidden'>
             {
               navItems.map(({ link, path }) => (
                 <li key={path}>
-                  <Link to={path} className='block text-base text-black uppercase cursor-pointer hover:text-blue-700'>{link}</Link>
+                  <Link to={path} className='block text-base uppercase cursor-pointer' style={{ color: 'rgb(233, 211, 208)' }}>
+                    <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105'>
+                      {link}
+                    </span>
+                  </Link>
+
                 </li>
               ))
             }

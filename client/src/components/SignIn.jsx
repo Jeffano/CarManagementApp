@@ -33,7 +33,7 @@ const SignIn = () => {
                                 onMouseEnter={(e) => { e.target.style.backgroundColor = 'rgb(200, 180, 175)' }} // Darker color on hover
                                 onMouseLeave={(e) => { e.target.style.backgroundColor = 'rgb(233, 211, 208)' }} // Original color on mouse leave
                             >
-                                ENTER
+                                Sign In
                             </button>
 
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
