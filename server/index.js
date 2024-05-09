@@ -109,6 +109,17 @@ async function run() {
         res.send(result);
     })
 
+    // create list
+
+    // add to list
+
+    // remove from list
+
+    // delete list
+
+    // get all public lists
+
+
     //filter by scale
     
     //get all public lists

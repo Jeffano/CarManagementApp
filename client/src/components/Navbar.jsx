@@ -41,6 +41,7 @@ const Navbar = () => {
     { link: 'Collection', path: '/collection' },
     { link: 'List', path: '/list' },
     { link: 'Account', path: '/account' },
+    { link: 'Log Out'}
   ]
   return (
     <header className='w-full bg-transparent fixed top-0 left-0 right-0 transtion-all ease-in duration-300'>

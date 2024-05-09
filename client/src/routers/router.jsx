@@ -7,6 +7,10 @@ import Home from "../home/Home.jsx"
 import Collection from "../collection/Collection.jsx"
 import List from "../list/List.jsx"
 import Account from "../account/Account.jsx"
+import SignUp from "../components/SignUp.jsx"
+import SignIn from "../components/SignIn.jsx"
+
+
 
 const router = createBrowserRouter([
     {
@@ -29,6 +33,14 @@ const router = createBrowserRouter([
                 path: "/account",
                 element: <Account/>,
             },
+            {
+                path: "/sign-up",
+                element: <SignUp/>,
+            },
+            {
+                path: "/sign-in",
+                element: <SignIn/>,
+            }
         ]
     },
 ])
