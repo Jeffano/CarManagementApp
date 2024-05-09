@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react'
+import SingleCar from '../components/SingleCar'
 
 const CarLists = () => {
     const [cars, setCars] = React.useState([]);
@@ -11,7 +12,7 @@ const CarLists = () => {
 
   return (
     <div>
-      Hello
+      <SingleCar cars = {cars} headline="CARS"/>
     </div>
   )
 }

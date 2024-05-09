@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import ListCards from '../components/ListCards';
 
 const PublicLists = () => {
     const [list, setLists] = React.useState([]);
@@ -12,7 +11,7 @@ const PublicLists = () => {
 
   return (
     <div>
-      <ListCards list/>
+      Hello
     </div>
   )
 }
