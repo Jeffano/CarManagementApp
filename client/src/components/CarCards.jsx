@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react'
-import ListCards from '../components/ListCards';
 
-const PublicLists = () => {
+const CarLists = () => {
     const [cars, setCars] = React.useState([]);
 
     useEffect(() => {
@@ -12,9 +11,9 @@ const PublicLists = () => {
 
   return (
     <div>
-
+      Hello
     </div>
   )
 }
 
-export default PublicLists
+export default CarLists

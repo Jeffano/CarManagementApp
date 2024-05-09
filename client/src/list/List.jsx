@@ -1,9 +1,12 @@
 import React from 'react'
+import Banner from './Banner'
+import SearchList from './SearchList'
 
 const List = () => {
   return (
     <div>
-      List
+      <Banner/>
+      <SearchList/>
     </div>
   )
 }

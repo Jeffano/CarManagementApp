@@ -1,15 +1,15 @@
 import React from 'react';
-import './collection.css';
+import './list.css';
 
-const SearchCar = () => {
+const SearchList = () => {
     return (
         <div className="search-container">
             <div>
-                <input type="search" name="search" id="search" placeholder='Search Car' className='search-input' />
+                <input type="search" name="search" id="search" placeholder='Search List' className='search-input' />
                 <button className="search-button">SEARCH</button>
             </div>
         </div>
     );
 }
 
-export default SearchCar;
+export default SearchList;
