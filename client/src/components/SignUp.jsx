@@ -4,12 +4,11 @@ import { AuthContext } from '../authentication/AuthProvider';
 
 
 const SignUp = () => {
-    const { createUser } = useContext(AuthContext);
-    const { checkEmail } = useContext(AuthContext);
+    const { createUser, checkEmail } = useContext(AuthContext);
     const [error, setError] = useState("error");
 
 
-    const handleSignUp = (e) => {
+    const handleSignUp = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -43,28 +42,15 @@ const SignUp = () => {
             return;
         }
 
-        // Check if the email already exists
-        checkEmail(email)
-            .then(emailExists => {
-                if (emailExists) {
-                    form.querySelector('label[for=error]').textContent = 'Email Already Exists';
-                } else {
-                    createUser(email, password)
-                        .then((userCredential) => {
-                            const user = userCredential.user;
-                            // Additional handling if needed
-                        })
-                        .catch((error) => {
-                            const errorCode = error.code;
-                            const errorMessage = error.message;
-                            setError(errorMessage);
-                        });
-                }
-            })
-            .catch(error => {
-                console.error("Error checking email:", error);
-                form.querySelector('label[for=error]').textContent = 'Error checking email';
-            });
+        try {
+            const userCredential = await createUser(email, password);
+            const user = userCredential.user;
+            
+        } catch (error) {
+            form.querySelector('label[for=error]').textContent = 'Email Already Exists';
+            console.error("Error Checking Email:", error);
+            setError(error.message); // assuming setError is defined elsewhere
+        }
     }
 
 

@@ -10,8 +10,6 @@ import Account from "../account/Account.jsx"
 import SignUp from "../components/SignUp.jsx"
 import SignIn from "../components/SignIn.jsx"
 
-
-
 const router = createBrowserRouter([
     {
         path: "/",
