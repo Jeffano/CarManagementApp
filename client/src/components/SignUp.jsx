@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
 import { Link } from 'react-router-dom';
-import {AuthContext} from '../authentication/AuthProvider'; 
+import { AuthContext } from '../authentication/AuthProvider';
 
 
-const SignUp = () => {  
-    const {createUser} = useContext(AuthContext);
+const SignUp = () => {
+    const { createUser } = useContext(AuthContext);
+    const { checkEmail } = useContext(AuthContext);
     const [error, setError] = useState("error");
-    
+
 
     const handleSignUp = (e) => {
         e.preventDefault();
@@ -34,17 +35,36 @@ const SignUp = () => {
         if (password !== confirmPassword) {
             form.querySelector('label[for=error]').textContent = 'Passwords Do Not Match';
             return;
-        } else {
-            console.log("BEFORE TRY");
-            createUser(email, password).then((userCredential) => {
-                const user = userCredential.user;
-            
-            }).catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
-                setError(errorMessage);
-            });
         }
+
+        // Check if the password is at least 8 characters long
+        if (password.length < 8) {
+            form.querySelector('label[for=error]').textContent = 'Password must be at least 8 characters long';
+            return;
+        }
+
+        // Check if the email already exists
+        checkEmail(email)
+            .then(emailExists => {
+                if (emailExists) {
+                    form.querySelector('label[for=error]').textContent = 'Email Already Exists';
+                } else {
+                    createUser(email, password)
+                        .then((userCredential) => {
+                            const user = userCredential.user;
+                            // Additional handling if needed
+                        })
+                        .catch((error) => {
+                            const errorCode = error.code;
+                            const errorMessage = error.message;
+                            setError(errorMessage);
+                        });
+                }
+            })
+            .catch(error => {
+                console.error("Error checking email:", error);
+                form.querySelector('label[for=error]').textContent = 'Error checking email';
+            });
     }
 
 
