@@ -53,7 +53,7 @@ const SignIn = () => {
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                        <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                        <h1 className="text-xl font-bold leading-tight tracking-tight text-center text-gray-900 md:text-2xl dark:text-white">
                             Sign In
                         </h1>
                         <form onSubmit={handleSignIn} className="space-y-4 md:space-y-6" action="#">
@@ -82,6 +82,10 @@ const SignIn = () => {
                             >
                                 Sign In
                             </button>
+
+                            <p className="text-sm font-light text-center text-gray-500 dark:text-gray-400">
+                                <Link to="/sign-up" className="font-medium" style={{ color: 'rgb(233, 211, 208)' }}> Reset Password </Link>
+                            </p>
 
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Don't have an account? <Link to="/sign-up" className="font-medium" style={{ color: 'rgb(233, 211, 208)' }}> Sign Up </Link>

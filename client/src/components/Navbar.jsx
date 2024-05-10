@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { AuthContext } from '../authentication/AuthProvider';
 
@@ -10,6 +10,10 @@ import { FaXmark } from "react-icons/fa6";
 
 const Navbar = () => {
 
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
   // Get user and signOutUser from AuthContext
   const { user, signOutUser } = useContext(AuthContext);
 
@@ -18,6 +22,9 @@ const Navbar = () => {
 
   // Define another state variable isSticky with initial value of false
   const [isSticky, setIsSticky] = React.useState(false);
+
+
+  const from = location.state?.from || { pathname: '/' };
 
   // toggle menu
   const toggleMenu = () => {
@@ -46,12 +53,17 @@ const Navbar = () => {
     { link: 'Collection', path: '/collection' },
     { link: 'List', path: '/list' },
     { link: 'Account', path: '/account' },
-    { link: 'Log Out', onClick: signOutUser },
+    { link: 'Log Out', onClick: handleSignOut },
   ] : [
     { link: 'Home', path: '/' },
     { link: 'Sign Up', path: '/sign-up' },
-    { link: 'Log In', path: '/sign-in' }
-  ]
+    { link: 'Sign In', path: '/sign-in' }
+  ];
+
+  function handleSignOut() {
+    signOutUser();
+    navigate(from, { replace: true });
+}
 
   return (
     <header className='w-full bg-transparent fixed top-0 left-0 right-0 transtion-all ease-in duration-300'>
@@ -67,8 +79,10 @@ const Navbar = () => {
               navItems.map(({ link, path, onClick }) => (
                 <li key={link}>
                   {onClick ? (
-                    <button onClick={onClick} className='block text-base uppercase cursor-pointer'>
-                      {link}
+                    <button onClick={onClick} className='block text-base uppercase cursor-pointer' style={{ color: 'rgb(233, 211, 208)' }}>
+                      <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105'>
+                        {link}
+                      </span>
                     </button>
                   ) : (
                     <Link to={path} className='block text-base uppercase cursor-pointer' style={{ color: 'rgb(233, 211, 208)' }}>
