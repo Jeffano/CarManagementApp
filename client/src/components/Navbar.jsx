@@ -1,6 +1,7 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
+import { AuthContext } from '../authentication/AuthProvider';
 
 // react icons
 import { FaCar } from "react-icons/fa";
@@ -8,6 +9,9 @@ import { FaBarsStaggered } from "react-icons/fa6";
 import { FaXmark } from "react-icons/fa6";
 
 const Navbar = () => {
+
+  // Get user and signOutUser from AuthContext
+  const { user, signOutUser } = useContext(AuthContext);
 
   // Define a state variable isMenuOpen with initial value of false
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -37,15 +41,18 @@ const Navbar = () => {
   }, []);
 
   // navItems
-  const navItems = [
+  const navItems = user ? [
     { link: 'Home', path: '/' },
     { link: 'Collection', path: '/collection' },
     { link: 'List', path: '/list' },
     { link: 'Account', path: '/account' },
-    { link: 'Log Out' },
-    { link: 'Sign Up', path: '/sign-up'},
-    { link: 'Log In', path: '/sign-in'}
+    { link: 'Log Out', onClick: signOutUser },
+  ] : [
+    { link: 'Home', path: '/' },
+    { link: 'Sign Up', path: '/sign-up' },
+    { link: 'Log In', path: '/sign-in' }
   ]
+
   return (
     <header className='w-full bg-transparent fixed top-0 left-0 right-0 transtion-all ease-in duration-300'>
       <nav className={`py-4 lg:px-24 px-4 ${isSticky ? "sticky top-0 left-0 right-0 dark:bg-gray-800" : ""}`}>
@@ -57,14 +64,19 @@ const Navbar = () => {
           {/* nav items for large devices */}
           <ul className='md:flex space-x-12 hidden'>
             {
-              navItems.map(({ link, path }) => (
-                <li key={path}>
-                  <Link to={path} className='block text-base uppercase cursor-pointer' style={{ color: 'rgb(233, 211, 208)' }}>
-                    <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105'>
+              navItems.map(({ link, path, onClick }) => (
+                <li key={link}>
+                  {onClick ? (
+                    <button onClick={onClick} className='block text-base uppercase cursor-pointer'>
                       {link}
-                    </span>
-                  </Link>
-
+                    </button>
+                  ) : (
+                    <Link to={path} className='block text-base uppercase cursor-pointer' style={{ color: 'rgb(233, 211, 208)' }}>
+                      <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105'>
+                        {link}
+                      </span>
+                    </Link>
+                  )}
                 </li>
               ))
             }

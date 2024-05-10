@@ -1,12 +1,13 @@
 import React, { useContext, useState } from 'react'
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../authentication/AuthProvider';
 
-
 const SignUp = () => {
-    const { createUser, checkEmail } = useContext(AuthContext);
-    const [error, setError] = useState("error");
+    const {createUser} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
+    const from = location.state?.from || { pathname: '/' };
 
     const handleSignUp = async (e) => {
         e.preventDefault();
@@ -45,6 +46,8 @@ const SignUp = () => {
         try {
             const userCredential = await createUser(email, password);
             const user = userCredential.user;
+            navigate(from, { replace: true });
+            
             
         } catch (error) {
             form.querySelector('label[for=error]').textContent = 'Email Already Exists';
@@ -52,8 +55,7 @@ const SignUp = () => {
             setError(error.message); // assuming setError is defined elsewhere
         }
     }
-
-
+    
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

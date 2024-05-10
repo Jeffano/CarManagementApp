@@ -1,10 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
+import React, { useContext, useState } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../authentication/AuthProvider';
 
 
 const SignIn = () => {
 
-    const handleSignIn = (e) => {
+    const {signIn} = useContext(AuthContext);
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const from = location.state?.from || { pathname: '/' };
+
+    const handleSignIn = async (e) => {
         e.preventDefault();
         const form = e.target;
         const email = form.email.value;
@@ -31,15 +38,15 @@ const SignIn = () => {
             return;
         }
 
-        
-
-        
+        try {
+            await signIn(email, password);
+            navigate(from, { replace: true });
+        }
+        catch (error) {
+            form.querySelector('label[for=error]').textContent = 'Invalid Email or Password';
+            console.error("Error Signing In:", error);
+        }        
     }
-
-
-
-
-
 
     return (
         <section className="bg-gray-50 dark:bg-gray-900">
