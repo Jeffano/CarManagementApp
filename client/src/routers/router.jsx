@@ -9,6 +9,7 @@ import List from "../list/List.jsx"
 import Account from "../account/Account.jsx"
 import SignUp from "../components/SignUp.jsx"
 import SignIn from "../components/SignIn.jsx"
+import PrivateRoute from "../PrivateRoute/PrivateRoute.jsx"
 
 const router = createBrowserRouter([
     {
@@ -21,15 +22,15 @@ const router = createBrowserRouter([
             },
             {
                 path: "/collection",
-                element: <Collection/>,
+                element: <PrivateRoute><Collection/></PrivateRoute>,
             },
             {
                 path: "/list",
-                element: <List/>,
+                element: <PrivateRoute><List/></PrivateRoute>,
             },
             {
                 path: "/account",
-                element: <Account/>,
+                element: <PrivateRoute><Account/></PrivateRoute>,
             },
             {
                 path: "/sign-up",
