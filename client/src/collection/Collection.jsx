@@ -2,6 +2,7 @@ import React from 'react'
 import Banner from './Banner'
 import SearchCar from './SearchCar'
 import AllCars from '../components/AllCars'
+import MyCars from './MyCars'
 
 
 const Collection = () => {
@@ -9,7 +10,9 @@ const Collection = () => {
     <div>
       <Banner/>
       <SearchCar/>
+      <MyCars/>
       <AllCars/>
+
     </div>
   );
 }

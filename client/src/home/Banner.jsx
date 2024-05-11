@@ -8,7 +8,7 @@ const Banner = () => {
 
         {/* left side */}
         <div>
-          <motion.h2 className='text-5xl font-bold leading-snug' style={{ color: 'rgb(233, 211, 208)' }}
+          <motion.h2 className='text-5xl font-bold leading-snug' style={{ color: '#e75a7c' }}
             whileHover={{ scale: 1.05, transition: { duration: 0.5 }, cursor: 'default' }}
             whileTap={{ scale: 0.95 }}>
             Welcome to our Diecast Car Management System!
@@ -17,7 +17,7 @@ const Banner = () => {
 
         {/* right side */}
         {/* Set width to full on small screens and 3/4 on medium screens and above */}
-        <div className="w-full md:w-3/4" style={{ color: 'rgb(146, 213, 230)' }}>
+        <div className="w-full md:w-3/4" style={{ color: '#e9d3d0' }}>
           <motion.div
             whileHover={{ scale: 1.05, y: -10, boxShadow: '0px 4px 8px rgba(255, 255, 255, 0.1)' }} // Adjust scale, y position, and shadow
             whileTap={{ scale: 0.95 }}

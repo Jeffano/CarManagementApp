@@ -1,13 +1,21 @@
 import React from 'react'
+import { Card } from "flowbite-react";
 
-const SingleCar = ({headline,cars}) => {
+const SingleCar = () => {
   return (
-    <div className='my-4 px-3 lg:px-24'>
-      <h2 className="text-5xl text-center font-bold text-black my-5">{headline}</h2>
-
-      {/* Display all cars */}
-      
-    </div>
+    <div className="p-4 flex flex-wrap justify-center"> {/* Flex container with padding and center alignment */}
+            <div className="max-w-sm mx-4 mb-4"> {/* Add margin between cards */}
+                <Card href="#" className="shadow-lg hover:shadow-xl"> {/* Add shadow classes for floating effect */}
+                    <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                        Noteworthy technology acquisitions 2021
+                    </h5>
+                    <p className="font-normal text-gray-700 dark:text-gray-400">
+                        Here are the biggest enterprise technology acquisitions of 2021 so far, in reverse chronological order.
+                    </p>
+                </Card>
+            </div>
+            {/* Add more Card components as needed */}
+        </div>
   )
 }
 

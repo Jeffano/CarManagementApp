@@ -31,6 +31,9 @@ async function run() {
 
     // create a collection of documents
     const carCollections = client.db("CarInventory").collection("cars");
+    const userCollection = client.db("CarInventory").collection("users");
+    const listCollection = client.db("CarInventory").collection("lists");
+    const commentCollection = client.db("CarInventory").collection("comments");
 
     // insert a car to the db: post method
     app.post("/add-car", async (req, res) => {
@@ -127,6 +130,7 @@ async function run() {
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
     console.log("Pinged your deployment. You successfully connected to MongoDB!");
+
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

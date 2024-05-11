@@ -23,7 +23,7 @@ const Navbar = () => {
   // Define another state variable isSticky with initial value of false
   const [isSticky, setIsSticky] = React.useState(false);
 
-
+  // Get the previous location from location.state
   const from = location.state?.from || { pathname: '/' };
 
   // toggle menu
@@ -71,7 +71,7 @@ const Navbar = () => {
         <div className='flex justify-between items-center text-base gap-8'>
 
           {/* logo */}
-          <Link to='/' className='text-2xl font-bold flex items-center gap-2' style={{ color: 'rgb(233, 211, 208)' }}><FaCar className='inline-block' />CARS</Link>
+          <Link to='/' className='text-2xl font-bold flex items-center gap-2' style={{ color: '#92d5e6' }}><FaCar className='inline-block' />CARS</Link>
 
           {/* nav items for large devices */}
           <ul className='md:flex space-x-12 hidden'>
