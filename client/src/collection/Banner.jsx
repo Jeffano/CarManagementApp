@@ -14,7 +14,7 @@ const Banner = () => {
             </div>
             <div>
                 <motion.p className="text-lg text-center pb-10" style={{ color: 'rgb(146, 213, 230)' }}>
-                    Enter the car you would like to search in your collection
+                    Manage Your Cars
                 </motion.p>
             </div>
         </div>

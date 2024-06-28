@@ -1,29 +1,53 @@
-.search-button {
-    @apply py-2 px-2 rounded-lg font-bold border hover:shadow-md transition duration-1000;
+.searchBox {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform:  translate(-50%,50%);
+    background: #2f3640;
+    border-radius: 40px;
+    padding: 2px;
+}
 
-    /* Effect 1 */
-    transition: transform 0.5s, border-radius 0.5s;
-    /* Added border-radius transition */
-    background-color: blue;
+.searchBox:hover > .searchInput {
+    width: 240px;
+    padding: 0 6px;
+}
+
+.searchBox:hover > .searchButton {
+  background: white;
+  color : #2f3640;
+}
+
+.searchButton {
     color: white;
-
-    /* Effect 2 */
-    box-shadow: 0 4px 8px rgba(94, 203, 233, 0.2);
-}
-
-.search-button:hover {
-    transform: scale(1.1);
-    border-radius: 50px;
-}
-
-.search-input {
-    @apply py-2 px-2 rounded-lg bg-gray-200 border border-gray-300 focus:outline-none focus:border-gray-500;
-    margin-right: 20px;
-}
-
-.search-container {
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
+    transition: 0.4s;
+}
+
+.searchInput {
+    border:none;
+    background: none;
+    outline:none;
+    float:left;
+    padding: 0;
+    color: white;
+    font-size: 16px;
+    transition: 0.4s;
+    line-height: 40px;
+    width: 0px;
+
+}
+
+@media screen and (max-width: 620px) {
+.searchBox:hover > .searchInput {
+    width: 150px;
+    padding: 0 6px;
+}
 }

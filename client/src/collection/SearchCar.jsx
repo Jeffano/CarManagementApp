@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
+import { FaSearch } from 'react-icons/fa';
 import './collection.css';
 
 const SearchCar = () => {
+
     return (
-        <div className="search-container">
-            <div>
-                <input type="search" name="search" id="search" placeholder='Search Car' className='search-input' />
-                <button className="search-button">SEARCH</button>
-            </div>
+        <div className="searchBox">
+            <input className="searchInput" type="text" name="" placeholder="Search"/>
+            <button className="searchButton" href="#">
+                <FaSearch />
+            </button>
         </div>
     );
-}
+};
 
 export default SearchCar;
