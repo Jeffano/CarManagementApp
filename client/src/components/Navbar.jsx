@@ -69,14 +69,14 @@ const Navbar = () => {
               navItems.map(({ link, path, onClick, icon }) => (
                 <li key={link} className='flex flex-col items-center'>
                   {onClick ? (
-                    <button onClick={onClick} className='block text-base uppercase cursor-pointer flex flex-col items-center' style={{ color: 'rgb(233, 211, 208)' }}>
+                    <button onClick={onClick} className='text-base uppercase cursor-pointer flex flex-col items-center' style={{ color: 'rgb(233, 211, 208)' }}>
                       <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105 flex flex-col items-center'>
                         {icon}
                         {link}
                       </span>
                     </button>
                   ) : (
-                    <Link to={path} className='block text-base uppercase cursor-pointer flex flex-col items-center' style={{ color: 'rgb(233, 211, 208)' }}>
+                    <Link to={path} className='text-base uppercase cursor-pointer flex flex-col items-center' style={{ color: 'rgb(233, 211, 208)' }}>
                       <span style={{ transition: 'color 0.3s, transform 0.3s' }} className='hover:text-blue-400 hover:transform hover:scale-105 flex flex-col items-center'>
                         {icon}
                         {link}
@@ -101,7 +101,7 @@ const Navbar = () => {
           {
             navItems.map(({ link, path, icon }) => (
               <li key={path} className='flex flex-col items-center'>
-                <Link to={path} className='block text-base text-white uppercase cursor-pointer flex flex-col items-center'>
+                <Link to={path} className='text-base text-white uppercase cursor-pointer flex flex-col items-center'>
                   {icon}
                   {link}
                 </Link>
