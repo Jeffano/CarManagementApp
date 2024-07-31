@@ -34,11 +34,16 @@ const AddCarModal = ({ isOpen, onClose, userEmail }) => {
             });
             const result = await response.json();
             console.log(result);
-            // Handle success, e.g., close modal and refresh data
-            onClose();
+            if (response.ok) {
+                // Handle success, e.g., close modal and refresh data
+                onClose();
+            } else {
+                console.error('Failed to add car:', result.error);
+                // Handle server-side validation errors
+            }
         } catch (error) {
             console.error('Error adding car:', error);
-            // Handle error
+            // Handle client-side errors
         }
     };
 
