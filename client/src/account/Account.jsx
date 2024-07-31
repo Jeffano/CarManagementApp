@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Account.css'; // Import the CSS file for styling
+import Banner from './Banner'
 import { AuthContext } from '../authentication/AuthProvider';
 
 const Account = () => {
@@ -7,7 +8,7 @@ const Account = () => {
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
-    email: `${user.email}`,  // Use Firebase data
+    email: `${user.email}`,
   });
 
   useEffect(() => {
@@ -73,49 +74,53 @@ const Account = () => {
   };
 
   return (
-    <div className="account-container">
-      <h2>Account Information</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label htmlFor="firstName">First Name:</label>
-          <input
-            type="text"
-            id="firstName"
-            name="firstName"
-            value={formData.firstName}
-            onChange={handleChange}
-            placeholder="Enter your first name"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="lastName">Last Name:</label>
-          <input
-            type="text"
-            id="lastName"
-            name="lastName"
-            value={formData.lastName}
-            onChange={handleChange}
-            placeholder="Enter your last name"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="email">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            required
-            readOnly
-          />
-        </div>
-        <button type="submit">Save Account Information</button>
-      </form>
+    <div>
+      <Banner />
+      <div className="account-container">
+        <h2>Account Information</h2>
+        <form onSubmit={handleSubmit}>
+          <div className="form-group">
+            <label htmlFor="firstName">First Name:</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={formData.firstName}
+              onChange={handleChange}
+              placeholder="Enter your first name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="lastName">Last Name:</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={formData.lastName}
+              onChange={handleChange}
+              placeholder="Enter your last name"
+              required
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="Enter your email"
+              required
+              readOnly
+            />
+          </div>
+          <button type="submit">Save Account Information</button>
+        </form>
+      </div>
     </div>
+
   );
 };
 

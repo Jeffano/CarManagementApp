@@ -44,10 +44,9 @@ async function run() {
 
     //All User Routes
 
-    // Add a new user
-    // Add or update user by email
+    // Add a new user or update an existing user
     app.post("/add-user", async (req, res) => {
-      const { firstName, lastName, email} = req.body;
+      const {firstName, lastName, email} = req.body;
 
       try {
         // Check if the user already exists

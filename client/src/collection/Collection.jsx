@@ -10,9 +10,6 @@ const Collection = () => {
     <div>
       <Banner/>
       <SearchCar/>
-      <MyCars/>
-      <AllCars/>
-
     </div>
   );
 }
