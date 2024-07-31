@@ -1,8 +1,105 @@
+/* AddCars Styles */
+.addBox {
+    position: absolute;
+    left: 10%;
+    transform: translate(0, 50%);
+    background: #2f3640;
+    border-radius: 40px;
+    padding: 2px;
+}
+
+.addBox:hover > .addButton {
+    background: white;
+    color: #2f3640;
+}
+
+.addButton {
+    color: white;
+    float: left;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
+}
+
+/* Modal Styles */
+.modal-overlay {
+    position: fixed; /* Fixed positioning for overlay */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50; /* Ensure it is on top of other elements */
+}
+
+.modal-content {
+    background-color: #fff; /* Match SignIn card color */
+    border-radius: 8px; /* Match SignIn card rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Match SignIn card shadow */
+    padding: 20px;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #e5e7eb; /* Match SignIn border color */
+    background-color: #f9fafb; /* Match SignIn card header color */
+    border-radius: 8px 8px 0 0;
+}
+
+.close-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.modal-body {
+    padding: 16px;
+}
+
+.inputField {
+    background-color: #f9fafb; /* Match SignIn input background */
+    border: 1px solid #e5e7eb; /* Match SignIn input border */
+    border-radius: 8px; /* Match SignIn input rounded corners */
+    padding: 8px;
+    width: 100%;
+}
+
+.submitButton {
+    background-color: rgb(233, 211, 208); /* Match SignIn button background */
+    color: black; /* Match SignIn button text color */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.875rem; /* Match SignIn button text size */
+    font-weight: 500; /* Match SignIn button font weight */
+    transition: background-color 0.3s; /* Smooth transition effect */
+}
+
+.submitButton:hover {
+    background-color: rgb(200, 180, 175); /* Match SignIn button hover color */
+}
+
+
+
+/* SearchCar Styles */
 .searchBox {
     position: absolute;
-
     left: 50%;
-    transform:  translate(-50%,50%);
+    transform: translate(-50%, 50%);
     background: #2f3640;
     border-radius: 40px;
     padding: 2px;
@@ -14,8 +111,8 @@
 }
 
 .searchBox:hover > .searchButton {
-  background: white;
-  color : #2f3640;
+    background: white;
+    color: #2f3640;
 }
 
 .searchButton {
@@ -32,22 +129,48 @@
 }
 
 .searchInput {
-    border:none;
+    border: none;
     background: none;
-    outline:none;
-    float:left;
-    padding: 0;
+    outline: none;
+    float: left;
     color: white;
     font-size: 16px;
     transition: 0.4s;
     line-height: 40px;
     width: 0px;
+}
 
+/* SortCars Styles */
+.sortBox {
+    position: absolute;
+    right: 10%;
+    transform: translate(0, 50%);
+    background: #2f3640;
+    border-radius: 40px;
+    padding: 2px;
+}
+
+.sortBox:hover > .sortButton {
+    background: white;
+    color: #2f3640;
+}
+
+.sortButton {
+    color: white;
+    float: right;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #2f3640;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s;
 }
 
 @media screen and (max-width: 620px) {
-.searchBox:hover > .searchInput {
-    width: 150px;
-    padding: 0 6px;
-}
+    .searchBox:hover > .searchInput {
+        width: 150px;
+        padding: 0 6px;
+    }
 }

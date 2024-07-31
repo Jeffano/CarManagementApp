@@ -14,7 +14,7 @@ const Banner = () => {
             </div>
             <div>
                 <motion.p className="text-lg text-center pb-10" style={{ color: 'rgb(146, 213, 230)' }}>
-                    Manage Your Cars
+                    Organize Your Car Collection
                 </motion.p>
             </div>
         </div>

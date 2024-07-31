@@ -5,7 +5,7 @@ import { AuthContext } from '../authentication/AuthProvider';
 
 const SignIn = () => {
 
-    const {signIn} = useContext(AuthContext);
+    const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
 
@@ -45,7 +45,7 @@ const SignIn = () => {
         catch (error) {
             form.querySelector('label[for=error]').textContent = 'Invalid Email or Password';
             console.error("Error Signing In:", error);
-        }        
+        }
     }
 
     return (
@@ -72,8 +72,9 @@ const SignIn = () => {
                             </div>
                             <button
                                 type="submit"
-                                className="w-full text-black bg-primary-600 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:focus:ring-primary-800"
+                                className="w-full font-medium rounded-lg text-sm px-5 py-2.5 text-center"
                                 style={{
+                                    color: 'black', // Explicitly set text color to black
                                     backgroundColor: 'rgb(233, 211, 208)',
                                     transition: 'background-color 0.3s', // Add transition for smooth effect
                                 }}
