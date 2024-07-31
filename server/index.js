@@ -35,97 +35,59 @@ async function run() {
     const listCollection = client.db("CarInventory").collection("lists");
     const commentCollection = client.db("CarInventory").collection("comments");
 
-    // insert a car to the db: post method
+    // All Car Collection Routes
     app.post("/add-car", async (req, res) => {
-        const data = req.body;
-        const result = await carCollections.insertOne(data);
-        res.send(result);
+      const data = req.body;
+      const result = await carCollections.insertOne(data);
+      res.send(result);
     })
 
-    // get all cars from the db: get method
-    app.get("/all-cars", async (req, res) => {
-        const result = await carCollections.find().toArray();
-        res.send(result);
-    })
+    //All User Routes
 
-    // get a car from the db: get method
-    app.get("/car/:id", async (req, res) => {
-        const id = req.params.id;
-        const result = await carCollections.findOne({ _id: new ObjectId(id) });
-        res.send(result);
-    })
+    // Add a new user
+    // Add or update user by email
+    app.post("/add-user", async (req, res) => {
+      const { firstName, lastName, email} = req.body;
 
-    // update a car in the db: put method
-    app.put("/update-car/:id", async (req, res) => {
-        const id = req.params.id;
-        const updatedCarData = req.body;
-        const result = await carCollections.updateOne({ _id: new ObjectId(id) }, { $set: updatedCarData });
-        res.send(result);
-    })
+      try {
+        // Check if the user already exists
+        const existingUser = await userCollection.findOne({ email: email });
 
-    // delete a car from the db: delete method
-    app.delete("/delete-car/:id", async (req, res) => {
-        const id = req.params.id;
-        const result = await carCollections.deleteOne({ _id: new ObjectId(id) });
-        res.send(result);
-    })
-
-    // filter by make
-    app.get("/car-make/:make", async (req, res) => {
-        const make = req.params.make;
-        const result = await carCollections.find({ make: make }).toArray();
-        res.send(result);
-    })
-
-    // filter by model
-    app.get("/car-model/:model", async (req, res) => {
-        const model = req.params.model;
-        const result = await carCollections.find({ model: model }).toArray();
-        res.send(result);
-    })
-
-    // filter by year
-    app.get("/car-year/:year", async (req, res) => {
-        const year = req.params.year;
-        const result = await carCollections.find({ year: year }).toArray();
-        res.send(result);
-    })
-
-    // filter by brand
-    app.get("/car-brand/:brand", async (req, res) => {
-        const brand = req.params.brand;
-        const result = await carCollections.find({ brand: brand }).toArray();
-        res.send(result);
-    })
-
-    //filter by size
-    app.get("/car-size/:size", async (req, res) => {
-        const size = req.params.size;
-        const result = await carCollections.find({ size: size }).toArray();
-        res.send(result);
-    })
-
-    //filter by color
-    app.get("/car-color/:color", async (req, res) => {
-        const color = req.params.color;
-        const result = await carCollections.find({ color: color }).toArray();
-        res.send(result);
-    })
-
-    // create list
-
-    // add to list
-
-    // remove from list
-
-    // delete list
-
-    // get all public lists
+        if (existingUser) {
+          // Update existing user
+          const result = await userCollection.updateOne(
+            { email: email },
+            { $set: { firstName, lastName } }
+          );
+          res.status(200).send({ message: "User updated successfully", result });
+        } else {
+          // Create a new user
+          const newUser = {
+            firstName,
+            lastName,
+            email,
+          };
+          const result = await userCollection.insertOne(newUser);
+          res.status(201).send({ message: "User added successfully", result });
+        }
+      } catch (error) {
+        console.error("Error adding or updating user:", error);
+        res.status(500).send({ message: "Failed to add or update user", error });
+      }
+    });
 
 
-    //filter by scale
-    
-    //get all public lists
+    // Fetch user data by email
+    app.get('/user/:email', async (req, res) => {
+      const email = req.params.email;
+      const user = await userCollection.findOne({ email: email });
+      res.send(user);
+    });
+
+
+    // All List Collection Routes
+
+
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
