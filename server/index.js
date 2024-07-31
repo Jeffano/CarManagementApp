@@ -35,29 +35,45 @@ async function run() {
     const userCollection = client.db("CarInventory").collection("users");
 
     // Add Car Route
-   // Add Car Route (without using a schema)
-   app.post("/add-car", async (req, res) => {
-    const { make, model, year, brand, size, color, additionalDetails, ownerId } = req.body;
+    app.post("/add-car", async (req, res) => {
+      const { make, model, year, brand, size, color, additionalDetails, ownerId } = req.body;
 
-    try {
-      // Insert car data into the collection
-      const result = await carCollection.insertOne({
-        make,
-        model,
-        year,
-        brand,
-        size,
-        color,
-        additionalDetails,
-        ownerId
-      });
+      try {
+        // Insert car data into the collection
+        const result = await carCollection.insertOne({
+          make,
+          model,
+          year,
+          brand,
+          size,
+          color,
+          additionalDetails,
+          ownerId
+        });
 
-      res.status(201).send({ message: "Car added successfully", result });
-    } catch (error) {
-      console.error("Error adding car:", error);
-      res.status(500).send({ message: "Failed to add car", error });
-    }
-  });
+        res.status(201).send({ message: "Car added successfully", result });
+      } catch (error) {
+        console.error("Error adding car:", error);
+        res.status(500).send({ message: "Failed to add car", error });
+      }
+    });
+
+    // Fetch cars by email (ownerId)
+    app.get('/cars/:email', async (req, res) => {
+      try {
+        const email = req.params.email;
+        const cars = await carCollection.find({ ownerId: email }).toArray();
+
+        if (cars.length === 0) {
+          return res.status(404).send({ message: 'No cars found for this user' });
+        }
+
+        res.send(cars);
+      } catch (error) {
+        console.error('Error fetching cars:', error);
+        res.status(500).send({ message: 'Internal Server Error' });
+      }
+    });
 
     // Add User Route
     app.post("/add-user", async (req, res) => {
