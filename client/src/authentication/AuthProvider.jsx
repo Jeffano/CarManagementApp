@@ -18,6 +18,17 @@ const AuthProvider = ({children}) => {
         return signInWithEmailAndPassword(auth, email, password)
     }
 
+    // Function to check if an email exists
+    const checkEmailExists = async (email) => {
+        try {
+            const signInMethods = await fetchSignInMethodsForEmail(auth, email);
+            return signInMethods.length > 0;
+        } catch (error) {
+            console.error('Error checking email existence:', error);
+            return false;
+        }
+    };
+
     // Function to handle user sign out
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged(user => {
@@ -45,6 +56,7 @@ const AuthProvider = ({children}) => {
         createUser,
         signIn,
         signOutUser,
+        checkEmailExists
     }
 
     return (

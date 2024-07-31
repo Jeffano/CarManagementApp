@@ -15,6 +15,8 @@ const SignUp = () => {
         const email = form.email.value;
         const password = form.password.value;
         const confirmPassword = form['confirm-password'].value;
+        const firstName = form.firstName.value;  // New variable for first name
+        const lastName = form.lastName.value;    // New variable for last name
 
         // Clear error message when user starts typing in the text box
         const inputs = form.querySelectorAll('input');
@@ -46,18 +48,40 @@ const SignUp = () => {
         try {
             const userCredential = await createUser(email, password);
             const user = userCredential.user;
-            navigate(from, { replace: true });
-
-
+    
+            // Proceed to add user details to MongoDB
+            try {
+                const response = await fetch('http://localhost:3000/add-user', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ firstName, lastName, email }),
+                });
+    
+                const result = await response.json();
+    
+                if (response.ok) {
+                    console.log('User added successfully:', result);
+                    navigate(from, { replace: true });
+                } else {
+                    console.error('Failed to add user:', result);
+                    form.querySelector('label[for=error]').textContent = 'Failed to add user';
+                }
+            } catch (dbError) {
+                console.error('Error adding user to database:', dbError);
+                form.querySelector('label[for=error]').textContent = 'Error adding user to database';
+            }
+    
         } catch (error) {
             form.querySelector('label[for=error]').textContent = 'Email Already Exists';
             console.error("Error Checking Email:", error);
-            setError(error.message); // assuming setError is defined elsewhere
+            // Handle error message setting if needed
         }
     }
 
     return (
-        <section className="bg-gray-50 dark:bg-gray-900">
+        <section className="bg-gray-50 dark:bg-gray-900 mt-16">
             <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
                 <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                     <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -69,6 +93,38 @@ const SignUp = () => {
                             className="space-y-4 md:space-y-6"
                             action="#"
                         >
+                            <div>
+                                <label
+                                    htmlFor="firstName"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                    First Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="firstName"
+                                    id="firstName"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="John"
+                                    required=""
+                                />
+                            </div>
+                            <div>
+                                <label
+                                    htmlFor="lastName"
+                                    className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                >
+                                    Last Name
+                                </label>
+                                <input
+                                    type="text"
+                                    name="lastName"
+                                    id="lastName"
+                                    className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                    placeholder="Doe"
+                                    required=""
+                                />
+                            </div>
                             <div>
                                 <label
                                     htmlFor="email"
@@ -165,4 +221,4 @@ const SignUp = () => {
     );
 }
 
-export default SignUp
+export default SignUp;

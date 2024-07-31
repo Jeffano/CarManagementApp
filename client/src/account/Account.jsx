@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './Account.css'; // Import the CSS file for additional styling
-import Banner from './Banner';
 import { AuthContext } from '../authentication/AuthProvider';
 
 const Account = () => {
@@ -52,24 +51,27 @@ const Account = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/add-user', {
-        method: 'POST',
+      const response = await fetch(`http://localhost:3000/user/${user.email}`, {
+        method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+        }),
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('User added or updated successfully:', data);
-        setAlert({ type: 'success', message: 'Account has been updated!' });
+        console.log('User updated successfully:', data);
+        setAlert({ type: 'success', message: 'Account information has been updated!' });
       } else {
-        console.error('Failed to add or update user:', response.statusText);
+        console.error('Failed to update user:', response.statusText);
         setAlert({ type: 'error', message: 'Failed to update user. Please try again.' });
       }
     } catch (error) {
-      console.error('Error adding or updating user:', error);
+      console.error('Error updating user:', error);
       setAlert({ type: 'error', message: 'An error occurred. Please try again.' });
     }
   };
