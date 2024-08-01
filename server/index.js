@@ -58,6 +58,57 @@ async function run() {
       }
     });
 
+    // Update Car by ID Route
+    app.put("/update-car/:id", async (req, res) => {
+      const carId = req.params.id;
+      const { make, model, year, brand, size, color, additionalDetails } = req.body;
+    
+      try {
+        const result = await carCollection.updateOne(
+          { _id: new ObjectId(carId) },
+          {
+            $set: {
+              make,
+              model,
+              year,
+              brand,
+              size,
+              color,
+              additionalDetails
+            }
+          }
+        );
+    
+        if (result.modifiedCount > 0) {
+          res.status(200).send({ message: "Car updated successfully" });
+        } else {
+          res.status(404).send({ message: "Car not found" });
+        }
+      } catch (error) {
+        console.error("Error updating car:", error);
+        res.status(500).send({ message: "Failed to update car", error });
+      }
+    });
+    
+    // Delete Car by ID Route
+    app.delete("/delete-car/:id", async (req, res) => {
+      const carId = req.params.id;
+    
+      try {
+        const result = await carCollection.deleteOne({ _id: new ObjectId(carId) });
+    
+        if (result.deletedCount > 0) {
+          res.status(200).send({ message: "Car deleted successfully" });
+        } else {
+          res.status(404).send({ message: "Car not found" });
+        }
+      } catch (error) {
+        console.error("Error deleting car:", error);
+        res.status(500).send({ message: "Failed to delete car", error });
+      }
+    });
+    
+
     // Fetch cars by email (ownerId)
     app.get('/cars/:email', async (req, res) => {
       try {

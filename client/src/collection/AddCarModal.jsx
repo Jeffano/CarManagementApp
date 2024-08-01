@@ -3,6 +3,22 @@ import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
 import './collection.css'; // Import the CSS file for the modal
 
+import Papa from 'papaparse';
+
+// Function to parse the CSV file
+const parseCSV = (file) => {
+  return new Promise((resolve, reject) => {
+    Papa.parse(file, {
+      complete: (results) => resolve(results.data),
+      header: true,
+      skipEmptyLines: true,
+      dynamicTyping: true,
+      error: (error) => reject(error),
+    });
+  });
+};
+
+
 const AddCarModal = ({ isOpen, onClose, userEmail }) => {
     const initialFormData = {
         make: '',

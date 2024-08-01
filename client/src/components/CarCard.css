@@ -1,0 +1,80 @@
+.collection-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    justify-content: center;
+    padding: 100px;
+}
+
+.card {
+    width: 220px; /* Consistent width for all cards */
+    height: 300px; /* Fixed height to maintain card uniformity */
+    background-image: linear-gradient(163deg, #e75a7c 0%, #3700ff 100%); /* Updated gradient */
+    border-radius: 20px; /* Ensure consistent rounding */
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth transition for scaling and shadow */
+    overflow: hidden; /* Prevent overflow of gradient */
+    position: relative; /* Ensure proper positioning of the gradient */
+    user-select: none;
+}
+
+.card2 {
+    width: 100%;
+    height: 100%; /* Ensures content fits within card */
+    background-color: #1a1a1a;
+    border-radius: 20px; /* Match the border-radius of .card */
+    padding: 20px;
+    color: #e9d3d0; /* Main text color updated */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+    position: absolute; /* Absolute positioning to overlay the gradient */
+    top: 0;
+    left: 0;
+    z-index: 1; /* Ensure the grey card is above the gradient */
+    border: 2px solid #e9d3d0; /* White outline for the grey card */
+    transition: transform 0.3s; /* Smooth transition for scaling */
+}
+
+.card2 h3 {
+    font-size: 1.3em;
+    font-weight: bold;
+    margin: 0;
+    padding-bottom: 10px;
+}
+
+.card2 p {
+    font-size: 0.9em;
+    margin: 5px 0;
+}
+
+.card2 .make-model {
+    font-size: 1.4em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #e75a7c; /* Main text color updated */
+}
+
+.card2 .details {
+    font-size: 0.8em;
+    color: #b0b0b0; /* Light grey for less important text */
+}
+
+.card2 .additional-details {
+    margin-top: 10px;
+}
+
+.card2 .additional-details p {
+    font-size: 0.8em;
+    color: #b0b0b0; /* Light grey for additional details */
+}
+
+.card:hover {
+    transform: scale(1.05); /* Slightly larger on hover */
+    box-shadow: 0px 0px 30px 1px rgba(231, 90, 124, 0.30); /* Glow effect with e75a7c color */
+}
+
+.card:hover .card2 {
+    transform: scale(1.05); /* Scale the content card uniformly with the background */
+}
